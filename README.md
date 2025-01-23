@@ -1,4 +1,4 @@
-# Terraform plan Dagger Demo
+# Terraform Plan Dagger Demo
 
 In this folder is a minimal, fully working demo showing how to run a Terraform plan locally using Dagger. This example uses Go for the pipeline code, but the workflow is the same conceptually for other supported languages. The steps are:
 
