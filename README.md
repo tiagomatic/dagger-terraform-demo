@@ -7,10 +7,11 @@ In this folder is a minimal, fully working demo showing how to run a Terraform p
 3. Run the pipeline locally using the Dagger CLI.
 
 ## Prerequisites
-* Go 1.18+ (so we can write the pipeline in Go).
-* Dagger CLI installed locally.
+* Go 1.18+ (so we can write the pipeline in Go)
+* [Docker](https://www.docker.com/) installed and running
+* Dagger CLI installed locally
     * Installation instructions: [Dagger Quickstart](https://docs.dagger.io/quickstart/)
-* Terraform is not required locally (we'll use the official Docker image through Dagger).
+* Terraform is not required locally. We'll run it with a Docker image through Dagger.
 
 ## Project Structure
 ```
@@ -18,6 +19,14 @@ In this folder is a minimal, fully working demo showing how to run a Terraform p
 │   └── main.go         # Go code for our Dagger pipeline
 ├── terraform
 │   ├── main.tf         # Our sample Terraform config
-│   └── terraform.tf     # Terraform providers
+│   └── terraform.tf    # Terraform providers
 └── go.mod              # Go module definition
 ```
+
+## Running Terraform Pipeline
+To run this Dagger pipeline, go to the root of this module and run the following command:
+```
+dagger run go run dagger/main.go -tfImage=hashicorp/terraform:1.4.0
+```
+
+The initial run will take some time at first, but subsequent runs will have cached images and run much faster.
