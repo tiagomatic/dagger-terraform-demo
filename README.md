@@ -11,7 +11,7 @@ In this folder is a minimal, fully working demo showing how to run a Terraform p
 * [Docker Desktop](https://www.docker.com/) or [Podman](https://podman.io/) installed and running
 * Dagger CLI installed locally
     * Installation instructions: [Dagger Quickstart](https://docs.dagger.io/quickstart/)
-* Terraform is not required locally. We'll run it with a Docker image through Dagger.
+* Terraform is not required locally. We'll run it within a Docker image through Dagger.
 
 ## Project Structure
 ```
