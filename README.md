@@ -8,7 +8,7 @@ In this folder is a minimal, fully working demo showing how to run a Terraform p
 
 ## Prerequisites
 * Go 1.18+ (so we can write the pipeline in Go)
-* [Docker](https://www.docker.com/) installed and running
+* [Docker Desktop](https://www.docker.com/) or [Podman](https://podman.io/) installed and running
 * Dagger CLI installed locally
     * Installation instructions: [Dagger Quickstart](https://docs.dagger.io/quickstart/)
 * Terraform is not required locally. We'll run it with a Docker image through Dagger.
