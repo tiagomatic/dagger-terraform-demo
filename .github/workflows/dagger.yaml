@@ -4,23 +4,28 @@ on:
     branches: [main]
 
 jobs:
-  build:
-    name: build
+
+  test:
+    name: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Dagger
-        uses: dagger/install-action@v1
-        with:
-          version: latest
-
       - name: Go test pipeline
-        run: dagger run go run dagger/unit-test/main.go
+        uses: dagger/dagger-for-github@v6
+        with:
+          verb: run
+          args: go run dagger/unit-test/main.go
 
       - name: Terraform pipeline
-        run: dagger run go run dagger/tf-plan/main.go
+        uses: dagger/dagger-for-github@v6
+        with:
+          verb: run
+          args: go run dagger/tf-plan/main.go
 
       - name: Lint JSON with Dagger pipeline
-        run: dagger run go run dagger/jsonlint/main.go
+        uses: dagger/dagger-for-github@v6
+        with:
+          verb: run
+          args: go run dagger/jsonlint/main.go
