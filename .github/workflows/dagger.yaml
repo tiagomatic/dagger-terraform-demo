@@ -22,7 +22,7 @@ jobs:
         uses: dagger/dagger-for-github@v6
         with:
           verb: run
-          args: go run dagger/tf-plan/main.go
+          args: go run dagger/tf-plan/main.go -tfImage=hashicorp/terraform:1.4.0"
 
       - name: Lint JSON with Dagger pipeline
         uses: dagger/dagger-for-github@v6
