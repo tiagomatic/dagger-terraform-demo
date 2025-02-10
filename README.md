@@ -15,8 +15,13 @@ In this folder is a minimal, fully working demo showing how to run a Terraform p
 
 ## Project Structure
 ```
+.
+├── .github
+│   └── workflows
+│       └── ci.yaml     # GitHub Actions workflow
 ├── dagger
 │   └── main.go         # Go code for our Dagger pipeline
+Actions workflow
 ├── terraform
 │   ├── main.tf         # Our sample Terraform config
 │   └── terraform.tf    # Terraform providers

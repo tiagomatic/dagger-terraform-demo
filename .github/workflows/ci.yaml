@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.19'
+
+      - name: Install Dagger CLI
+        uses: dagger/engine-action@v3
+        with:
+          version: v0.15.3
+
+      - name: Run Dagger Test Pipeline
+        run: dagger run go run dagger/main.go
