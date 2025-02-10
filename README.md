@@ -49,7 +49,7 @@ If your tests pass, the pipeline will print a success message.
 The Terraform pipeline initializes and plans a simple Terraform project.
 
 ```bash
-dagger run go run dagger/tf-plan/main.go
+dagger run go run dagger/tf-plan/main.go -tfImage=hashicorp/terraform:1.4.0
 ```
 
 You’ll see Terraform output (e.g. “Terraform has been successfully initialized!”). If the plan is successful, you’ll see no errors.
