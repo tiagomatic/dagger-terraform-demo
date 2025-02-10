@@ -11,14 +11,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Call Dagger Functions
-        uses: dagger/dagger-for-github@v7
+      - name: Install Dagger
+        uses: dagger/install-action@v1
         with:
-          version: "latest"
-          verb: call
-          module: github.com/kpenfound/dagger-modules/golang@v0.2.0
-          args: build-container --source=. --args=. publish --address=ttl.sh/my-app-$RANDOM
-          cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
+          version: latest
 
       - name: Go test pipeline
         run: dagger run go run dagger/unit-test/main.go
