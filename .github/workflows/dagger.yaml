@@ -1,26 +1,40 @@
-name: CI
-
+name: dagger
 on:
   push:
-    branches: [ main ]
-  pull_request:
+    branches: [main]
 
 jobs:
-  dagger-pipelines:
+  test:
+    name: test
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Set up Go
-        uses: actions/setup-go@v4
+      - name: Test
+        uses: dagger/dagger-for-github@v7
         with:
-          go-version: "1.23.5"
+          version: "latest"
+          verb: call
+          module: github.com/kpenfound/dagger-modules/golang@v0.2.0
+          args: test --source=.
+          cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Install Dagger CLI
-        uses: dagger/engine-action@v3
+      - name: Call Dagger Functions
+        uses: dagger/dagger-for-github@v7
         with:
-          version: latest
+          version: "latest"
+          verb: call
+          module: github.com/kpenfound/dagger-modules/golang@v0.2.0
+          args: build-container --source=. --args=. publish --address=ttl.sh/my-app-$RANDOM
+          cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
 
       - name: Go test pipeline
         run: dagger run go run dagger/unit-test/main.go
